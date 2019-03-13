@@ -1,2 +1,0 @@
-class BetsController < ApplicationController
-end
