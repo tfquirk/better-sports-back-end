@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_13_192428) do
+ActiveRecord::Schema.define(version: 2019_03_14_134201) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,12 +28,11 @@ ActiveRecord::Schema.define(version: 2019_03_13_192428) do
     t.bigint "user_id"
     t.bigint "game_id"
     t.float "wager"
-    t.float "odds_win"
-    t.float "odds_draw"
-    t.float "odds_loose"
     t.string "currency"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "odds"
+    t.string "betType"
     t.index ["game_id"], name: "index_bets_on_game_id"
     t.index ["user_id"], name: "index_bets_on_user_id"
   end
@@ -52,6 +51,13 @@ ActiveRecord::Schema.define(version: 2019_03_13_192428) do
     t.string "zip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "matchName"
+    t.string "one"
+    t.string "draw"
+    t.string "two"
+    t.string "oneDraw"
+    t.string "twoDraw"
+    t.integer "winner"
   end
 
   create_table "players", force: :cascade do |t|
@@ -110,6 +116,7 @@ ActiveRecord::Schema.define(version: 2019_03_13_192428) do
     t.string "zip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "email"
   end
 
   add_foreign_key "accounts", "users"
