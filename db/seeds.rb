@@ -158,7 +158,7 @@ uefa_teams = [133738,
 ### Random Matchup of for gamees  ----------------------------------------------
 
   Game.create(
-    home_team_id: 0,
+    home_team_id: 8,
     away_team_id: 1,
     matchName: "#{Team.all[0].name} vs. #{Team.all[1].name}",
     match_date: Time.new(2019, 03, 15),
