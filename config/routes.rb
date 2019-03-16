@@ -8,6 +8,8 @@ Rails.application.routes.draw do
      resources :users, only: [:index, :show]
      resources :games, only: [:index, :show]
      resources :bets, only: [:index, :show, :create, :update, :destroy]
+
+     post "/signup", to: "auth#create_user"
     end
   end
 
