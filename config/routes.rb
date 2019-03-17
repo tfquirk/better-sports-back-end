@@ -9,7 +9,10 @@ Rails.application.routes.draw do
      resources :games, only: [:index, :show]
      resources :bets, only: [:index, :show, :create, :update, :destroy]
 
-     post "/signup", to: "auth#create_user"
+     get "auto_login", to: "auth#auto_login"
+     post "/signup", to: "auth#signup_user"
+     post "/login", to: "auth#login_user"
+
     end
   end
 

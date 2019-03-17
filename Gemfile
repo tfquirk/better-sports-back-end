@@ -32,8 +32,10 @@ gem 'rack-cors'
 gem 'rest-client'
 #Used to serialize info the API shares
 gem 'fast_jsonapi'
-# for ENV file 
+# for ENV file
 gem 'dotenv-rails'
+# create JWTs
+gem 'jwt'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
