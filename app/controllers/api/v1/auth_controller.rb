@@ -17,7 +17,7 @@ class Api::V1::AuthController < ApplicationController
 
     if @user && @user.authenticate(params[:password])
       token = JWT.encode({identifier: @user.id}, ENV["PLAY_IT_SAFE"])
-      byebug
+
       render json: {user: UsersSerializer.new(@user).serialized_json, token: token}, status: :ok
     else
       render json: {error: "Account not found."}, status: :ok
