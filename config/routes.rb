@@ -8,7 +8,7 @@ Rails.application.routes.draw do
      resources :players, only: [:index, :show]
      resources :users, only: [:index, :show]
      resources :games, only: [:index, :show]
-     resources :bets, only: [:index, :show, :create, :update, :destroy]
+     resources :bets, only: [:create, :update, :destroy]
 
      get "auto_login", to: "auth#auto_login"
      post "/signup", to: "auth#signup_user"
