@@ -5,7 +5,13 @@ class Api::V1::BetsController < ApplicationController
     id = JWT.decode(request.headers["Authorization"], ENV["PLAY_IT_SAFE"])[0]["identifier"]
     @user = User.find(id)
 
-    if @user
+    account = @user.accounts[0].balance.to_i
+    account -= bet_params["amount"].to_i
+
+    if @user && account >= 0
+
+      @user.accounts[0].update(balance: account)
+      # byebug
       @bet = Bet.create(user_id: @user.id, game_id: bet_params["game"],
         wager: bet_params["amount"], odds: bet_params["odds"],
         betType: bet_params["betType"]
