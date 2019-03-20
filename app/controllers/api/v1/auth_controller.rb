@@ -5,6 +5,8 @@ class Api::V1::AuthController < ApplicationController
 
     if @user.save
       token = JWT.encode({identifier: @user.id}, ENV["PLAY_IT_SAFE"])
+      Account.create(user_id: @user.id, balance: "0", starting_balance: "0")
+
       render json: {user: UsersSerializer.new(@user).serialized_json, token: token}, status: :ok
     else
       render json: {error: "Unable to create account. Please try again later or call our customer service number.", errors: @user.errors.full_messages}, status: :ok
@@ -14,7 +16,7 @@ class Api::V1::AuthController < ApplicationController
 
   def login_user
     @user = User.find_by(email: params["email"])
-
+    
     if @user && @user.authenticate(params[:password])
       token = JWT.encode({identifier: @user.id}, ENV["PLAY_IT_SAFE"])
 
