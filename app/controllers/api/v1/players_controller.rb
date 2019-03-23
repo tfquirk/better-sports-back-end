@@ -11,7 +11,7 @@ class Api::V1::PlayersController < ApplicationController
   end
 
   def team_players
-
+    byebug
   end
 
 end
