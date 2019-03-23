@@ -11,6 +11,7 @@ Rails.application.routes.draw do
      resources :bets, only: [:create, :update, :destroy]
 
      get "auto_login", to: "auth#auto_login"
+     get "team_players", to: "players#team_players"
      post "/signup", to: "auth#signup_user"
      post "/login", to: "auth#login_user"
 

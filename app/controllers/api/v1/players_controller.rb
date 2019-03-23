@@ -10,4 +10,8 @@ class Api::V1::PlayersController < ApplicationController
     render json: @player, status: :ok
   end
 
+  def team_players
+
+  end
+
 end
