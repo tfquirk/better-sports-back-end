@@ -11,7 +11,12 @@ class Api::V1::PlayersController < ApplicationController
   end
 
   def team_players
-    byebug
+
+    team_id = request.headers["teamId"]
+    @players = Player.where(team_id: team_id)
+    # byebug
+
+    render json: PlayersSerializer.new(@players).serialized_json, status: :ok
   end
 
 end
