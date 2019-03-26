@@ -6,15 +6,13 @@ class Api::V1::PlayersController < ApplicationController
   end
 
   def show
-    @player = Player.find(params[:id])
+    @player = PlayersSerializer.new(Player.find(params[:id])).serialized_json
     render json: @player, status: :ok
   end
 
   def team_players
-
     team_id = request.headers["teamId"]
     @players = Player.where(team_id: team_id)
-    # byebug
 
     render json: PlayersSerializer.new(@players).serialized_json, status: :ok
   end
