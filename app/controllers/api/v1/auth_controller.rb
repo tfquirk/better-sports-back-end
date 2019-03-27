@@ -16,11 +16,11 @@ class Api::V1::AuthController < ApplicationController
 
   def login_user
     @user = User.find_by(email: params["email"])
-    
+
     if @user && @user.authenticate(params[:password])
       token = JWT.encode({identifier: @user.id}, ENV["PLAY_IT_SAFE"])
 
-      render json: {user: UsersSerializer.new(@user).serialized_json, token: token}, status: :ok
+      render json: {user: {attributes: {first_name: @user.first_name, last_name: @user.last_name, accounts: @user.accounts, bets: @user.bets}}, token: token}, status: :ok
     else
       render json: {error: "Account not found."}, status: :ok
     end
