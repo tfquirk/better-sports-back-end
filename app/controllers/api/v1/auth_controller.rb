@@ -22,7 +22,7 @@ class Api::V1::AuthController < ApplicationController
 
       render json: {user: UsersSerializer.new(@user), token: token}, status: :ok
     else
-      render json: {error: "Account not found."}, status: :ok
+      render json: {errors: "Your email and/or password do not match."}, status: :ok
     end
 
   end
