@@ -2,14 +2,14 @@ class Api::V1::AuthController < ApplicationController
 
   def signup_user
     @user = User.new(auth_create_user_params)
-
+    byebug
     if @user.save
       token = JWT.encode({identifier: @user.id}, ENV["PLAY_IT_SAFE"])
       Account.create(user_id: @user.id, balance: "0", starting_balance: "0")
 
       render json: {user: UsersSerializer.new(@user), token: token}, status: :ok
     else
-      render json: {error: "Unable to create account. Please try again later or call our customer service number.", errors: @user.errors.full_messages}, status: :ok
+      render json: {errors: @user.errors.full_messages}, status: :ok
     end
 
   end
